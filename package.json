@@ -13,6 +13,7 @@
     "dependencies": {
       "axios": "^1.7.7",
       "express": "^4.21.0",
+      "cheerio": "^1.0.0",
       "netlify-cli": "17.36.4",
       "netlify-lambda": "^2.0.16",
       "serverless-http": "^3.2.0",
