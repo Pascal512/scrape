@@ -5,6 +5,19 @@ const cheerio = require('cheerio');
 const app = express();
 const port = 3000;
 
+// Middleware pour forcer les réponses JSON
+app.use((req, res, next) => {
+    res.setHeader('Content-Type', 'application/json');
+    next();
+});
+
+// Root
+router.get('/', (req, res) => {
+    res.json({
+        response: 'API en marche'
+    });
+});
+
 // Route principale pour le scraping avec paramètres dynamiques
 app.get('/scrape/:type/:url(*)', async (req, res) => {
     const { url, type } = req.params;
@@ -47,6 +60,9 @@ app.get('/scrape/:type/:url(*)', async (req, res) => {
 });
 
 // Démarrage du serveur
-app.listen(port, () => {
+/*app.listen(port, () => {
     console.log(`API de scraping en cours d'exécution sur http://localhost:${port}`);
-});
+});*/
+
+app.use('/.netlify/functions/api', router);
+module.exports.handler = serverless(app);
