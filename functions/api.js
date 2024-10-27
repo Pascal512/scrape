@@ -28,8 +28,9 @@ router.get('/test', (req, res) => {
 });
 
 // Route principale pour le scraping avec paramètres dynamiques
-app.get('/scrape', async (req, res) => {
-    const { url, type } = req.params;
+app.get('/scrape/:type/:url', async (req, res) => {
+    const type = req.params.type;
+    const url = req.params.url;
 
     if (!url || !type) {
         return res.status(400).json({ error: "L'URL et le type d'extraction sont obligatoires." });
