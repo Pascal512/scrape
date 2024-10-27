@@ -43,10 +43,6 @@ router.get('/scrape', (req, res) => {
         return res.status(400).json({ error: "L'URL et le type d'extraction sont obligatoires." });
     }
 
-    res.json({
-        response: 'Route scrape API en marche. Avec comme paramètres : type == ' + type + ' | url == ' + url
-    });
-
     try {
         // Récupère le contenu HTML de l'URL fournie
         const response = axios.get(decodeURIComponent(url));
