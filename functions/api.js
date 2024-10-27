@@ -43,11 +43,12 @@ router.get('/scrape', (req, res) => {
         return res.status(400).json({ error: "L'URL et le type d'extraction sont obligatoires." });
     }
 
+    let axiosResponse;
     try {
         // Récupère le contenu HTML de l'URL fournie
         const response = axios.get(decodeURIComponent(url));
         const $ = cheerio.load(response.data);
-        const axiosResponse = response.data;
+        axiosResponse = response.data;
 
         let result;
 
