@@ -66,5 +66,6 @@ app.get('/scrape/:type/:url(*)', async (req, res) => {
     console.log(`API de scraping en cours d'exécution sur http://localhost:${port}`);
 });*/
 
-app.use('/.netlify/functions/api', router);
+//app.use('/.netlify/functions/api', router);
+app.use('/', router);
 module.exports.handler = serverless(app);
