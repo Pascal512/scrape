@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
 });
 
 // Route principale pour le scraping avec paramètres dynamiques
-app.get('/scrape/:type/:url(*)', async (req, res) => {
+app.get('/scrape', async (req, res) => {
     const { url, type } = req.params;
 
     if (!url || !type) {
@@ -66,6 +66,6 @@ app.get('/scrape/:type/:url(*)', async (req, res) => {
     console.log(`API de scraping en cours d'exécution sur http://localhost:${port}`);
 });*/
 
-//app.use('/.netlify/functions/api', router);
-app.use('/', router);
+app.use('/.netlify/functions/api', router);
+//app.use('/', router);
 module.exports.handler = serverless(app);
