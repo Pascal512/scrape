@@ -22,15 +22,15 @@ router.get('/', (req, res) => {
 
 // Root
 router.get('/test', (req, res) => {
+    const { url, type } = req.query;
     res.json({
-        response: 'Route test API en marche. Avec comme paramètres : type == ' + req.params.type + ' | url == ' + req.params.url
+        response: 'Route test API en marche. Avec comme paramètres : type == ' + type + ' | url == ' + url
     });
 });
 
 // Route principale pour le scraping avec paramètres dynamiques
-app.get('/scrape/:type/:url', async (req, res) => {
-    const type = req.params.type;
-    const url = req.params.url;
+app.get('/scrape', async (req, res) => {
+    const { url, type } = req.query;
 
     if (!url || !type) {
         return res.status(400).json({ error: "L'URL et le type d'extraction sont obligatoires." });
