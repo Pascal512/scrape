@@ -10,6 +10,9 @@ const port = 3000;
 // Middleware pour forcer les réponses JSON
 app.use((req, res, next) => {
     res.setHeader('Content-Type', 'application/json');
+    res.header("Access-Control-Allow-Origin", "*"); // Permet l'accès depuis n'importe quelle origine
+    res.header("Access-Control-Allow-Methods", "GET, POST"); // Autorise les méthodes GET et POST
+    res.header("Access-Control-Allow-Headers", "Content-Type"); // Autorise le header Content-Type
     next();
 });
 
