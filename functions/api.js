@@ -13,6 +13,10 @@ app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*"); // Permet l'accès depuis n'importe quelle origine
     res.header("Access-Control-Allow-Methods", "GET, POST"); // Autorise les méthodes GET et POST
     res.header("Access-Control-Allow-Headers", "*"); // Autorise le header Content-Type
+    // Vérifie si la requête est de type OPTIONS (pré-vérification CORS)
+    if (req.method === 'OPTIONS') {
+        return res.status(200).end(); // Retourne un statut 200 avec une réponse vide
+    }
     next();
 });
 
