@@ -29,7 +29,7 @@ router.get('/test', (req, res) => {
 });
 
 // Route principale pour le scraping avec paramètres dynamiques
-app.get('/scrape', async (req, res) => {
+app.get('/scrape', (req, res) => {
     const { url, type } = req.query;
 
     if (!url || !type) {
@@ -38,7 +38,7 @@ app.get('/scrape', async (req, res) => {
 
     try {
         // Récupère le contenu HTML de l'URL fournie
-        const response = await axios.get(decodeURIComponent(url));
+        const response = axios.get(decodeURIComponent(url));
         const $ = cheerio.load(response.data);
 
         let result;
