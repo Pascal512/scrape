@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
 // Root
 router.get('/test', (req, res) => {
     res.json({
-        response: 'Route test API en marche'
+        response: 'Route test API en marche. Avec comme paramètres : ' + req.params
     });
 });
 
