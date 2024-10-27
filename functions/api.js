@@ -36,7 +36,7 @@ router.get('/test', (req, res) => {
 });
 
 // Route principale pour le scraping avec paramètres dynamiques
-app.get('/scrape', (req, res) => {
+router.get('/scrape', (req, res) => {
     const { url, type } = req.query;
 
     if (!url || !type) {
@@ -47,7 +47,7 @@ app.get('/scrape', (req, res) => {
         response: 'Route scrape API en marche. Avec comme paramètres : type == ' + type + ' | url == ' + url
     });
 
-    /*try {
+    try {
         // Récupère le contenu HTML de l'URL fournie
         const response = axios.get(decodeURIComponent(url));
         const $ = cheerio.load(response.data);
@@ -77,7 +77,7 @@ app.get('/scrape', (req, res) => {
         res.json({ url, type, result });
     } catch (error) {
         res.status(500).json({ error: 'Erreur lors du scraping', details: error.message });
-    }*/
+    }
 });
 
 // Démarrage du serveur
