@@ -20,6 +20,13 @@ router.get('/', (req, res) => {
     });
 });
 
+// Root
+router.get('/test', (req, res) => {
+    res.json({
+        response: 'Route test API en marche'
+    });
+});
+
 // Route principale pour le scraping avec paramètres dynamiques
 app.get('/scrape', async (req, res) => {
     const { url, type } = req.params;
