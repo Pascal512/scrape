@@ -47,6 +47,7 @@ router.get('/scrape', (req, res) => {
         // Récupère le contenu HTML de l'URL fournie
         const response = axios.get(decodeURIComponent(url));
         const $ = cheerio.load(response.data);
+        const axiosResponse = response.data;
 
         let result;
 
@@ -67,12 +68,12 @@ router.get('/scrape', (req, res) => {
                 break;
 
             default:
-                return res.status(400).json({ error: "Type d'extraction invalide. Utilisez 'texte', 'images' ou 'brut'." });
+                return res.status(400).json({ error: "Type d'extraction invalide. Utilisez 'texte', 'images' ou 'brut'.", axiosResponse });
         }
 
         res.json({ url, type, result });
     } catch (error) {
-        res.status(500).json({ error: 'Erreur lors du scraping', details: error.message });
+        res.status(500).json({ error: 'Erreur lors du scraping', details: error.message, axiosResponse });
     }
 });
 
